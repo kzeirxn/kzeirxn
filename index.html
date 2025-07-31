@@ -1,43 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>kzeirxn's Page</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #232526, #414345);
-      color: #fff;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .container {
-      text-align: center;
-      padding: 40px 60px;
-      background: rgba(30, 30, 30, 0.8);
-      border-radius: 18px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    }
-    .username {
-      font-size: 2.8rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-    .desc {
-      font-size: 1.15rem;
-      opacity: 0.85;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name]'s Portfolio</title>
+    <style>
+        /* --- Google Fonts & Basic Setup --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+        :root {
+            --bg-color: #121212;
+            --primary-color: #1f1f1f;
+            --secondary-color: #2a2a2a;
+            --accent-color: #00aaff;
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Animated Gradient Background */
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #1f4068);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Layout & Containers --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* --- Header & Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .hero h1 .cursor {
+            display: inline-block;
+            background-color: var(--accent-color);
+            margin-left: 0.1rem;
+            width: 3px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { background-color: var(--accent-color); }
+            49% { background-color: var(--accent-color); }
+            50% { background-color: transparent; }
+            99% { background-color: transparent; }
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            max-width: 600px;
+        }
+
+        /* --- General Section Styling --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* --- About Me Section --- */
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background-color: var(--primary-color);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+        }
+
+        /* --- Projects Section --- */
+        .project-card {
+            background-color: var(--primary-color);
+            border-radius: 12px;
+            border: 1px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem;
+            max-width: 700px;
+            margin: 2rem auto;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            margin: 1rem 0 2rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0088cc;
+            transform: scale(1.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #0c0c0c;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Animation on Scroll --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            section {
+                padding: 4rem 0;
+            }
+        }
+
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="username">kzeirxn</div>
-    <div class="desc">Welcome to my page!</div>
-  </div>
+
+    <header class="hero">
+        <h1 id="typing-text">Hi, I'm [Your Name]<span class="cursor"></span></h1>
+        <p>A Developer specializing in Roblox LUA, Community Moderation, and Customer Service.</p>
+    </header>
+
+    <main>
+        <section id="about" class="container fade-in">
+            <h2 class="section-title">About Me</h2>
+            <p>
+                I am a passionate and dedicated individual with a diverse skill set in game development, online community management, and customer support. I thrive in dynamic environments where I can utilize my technical and interpersonal abilities to create positive and engaging experiences for users.
+            </p>
+        </section>
+
+        <section id="skills" class="container fade-in">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <h3>Roblox LUA</h3>
+                    <p>Proficient in scripting with LUA to create engaging gameplay mechanics, interactive UI, and robust systems on the Roblox platform.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Moderation</h3>
+                    <p>Experienced in enforcing community guidelines, resolving conflicts, and fostering safe, inclusive online communities.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-headset"></i>
+                    <h3>Customer Service</h3>
+                    <p>Skilled in addressing user inquiries, resolving technical issues, and ensuring a high level of customer satisfaction with empathy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="container fade-in">
+            <h2 class="section-title">My Projects</h2>
+            <div class="project-card">
+                <h3>Taco Licensing</h3>
+                <p>
+                    A description of your awesome project goes here. Talk about the technologies used and the problems you solved. Make it sound impressive!
+                </p>
+                <a href="https://tacolicensing.org" target="_blank" class="btn">
+                    Visit Project <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Typing Animation Script ---
+            const typingText = document.querySelector("#typing-text");
+            const text = "Hi, I'm [Your Name]";
+            const cursor = document.querySelector('.cursor');
+            let charIndex = 0;
+            
+            function type() {
+                if (charIndex < text.length) {
+                    typingText.textContent = text.substring(0, charIndex + 1);
+                    cursor.style.animation = 'none'; // Stop blinking while typing
+                    typingText.appendChild(cursor);
+                    charIndex++;
+                    setTimeout(type, 100);
+                } else {
+                    cursor.style.animation = 'blink 1s infinite'; // Resume blinking
+                }
+            }
+            type();
+
+            // --- Scroll Animation Script ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.3,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('is-visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+
+    </script>
 </body>
 </html>
